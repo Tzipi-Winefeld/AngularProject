@@ -1,0 +1,28 @@
+<!-- יש לקשר את הטופס למשתנה האחורי -->
+<!--formGroup עי הוספת מאפיין  -->
+<!-- והצבת המשתנה האחורי -->
+<form (ngSubmit)="send()" [formGroup]="f" class="all"><br>
+    <!-- <label><b>התחברות</b></label><br> -->
+    <label class="form-label">input email:</label>
+    <input type="text" formControlName="email" class="form-control">
+    <div *ngIf="email.invalid && (email.touched||email.dirty)">
+        <p *ngIf="email.hasError('required')">שדה חובה</p>
+        <p *ngIf="email.hasError('errorEmail')">כתובת מייל לא תקינה</p>
+    </div>
+    
+    <label class="form-label">input password:</label>
+    <input formControlName="password" type="password" class="form-control">
+    <div *ngIf="password.invalid && (password.touched || password.dirty)">
+        <p *ngIf="password.hasError('required')">שדה חובה</p>
+        <!-- שמות בדיקות התקינות באותיות קטנות גם כמה מילים -->
+        <p *ngIf="password.hasError('minlength')">קצר</p>
+        <!-- בבדיקת תקינות אישית יש לכתוב את שם הערך שהפונקציה מחזירה -->
+        <p *ngIf="password.hasError('errorName')">קיים</p>
+
+    </div>
+    <br>
+    <input type="submit" [disabled]="f.invalid">
+</form>
+<div class="second">
+    
+</div>

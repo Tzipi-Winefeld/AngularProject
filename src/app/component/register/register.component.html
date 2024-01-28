@@ -1,0 +1,74 @@
+<!-- יש לקשר את הטופס למשתנה האחורי -->
+<!--formGroup עי הוספת מאפיין  -->
+<!-- והצבת המשתנה האחורי -->
+<form (ngSubmit)="send()" [formGroup]="f" class="all"><br>
+
+
+    <label class="form-label">input id:</label>
+    <input type="text" formControlName="id" class="form-control">
+    <div *ngIf="email.invalid && (email.touched||email.dirty)">
+        <p *ngIf="id.hasError('required')">שדה חובה</p>
+        <p *ngIf="email.hasError('minlength')">חסר ספרות ב ת.ז</p>
+        <p *ngIf="email.hasError('maxlength')">ספרות מיותרות ב ת.ז</p>
+    </div>
+
+    <label class="form-label">input email:</label>
+    <input type="text" formControlName="email" class="form-control">
+    <div *ngIf="email.invalid && (email.touched||email.dirty)">
+        <p *ngIf="email.hasError('required')">שדה חובה</p>
+        <p *ngIf="email.hasError('errorEmail')">אין משתמש עם מייל זה</p>
+    </div>
+
+    <label class="form-label">input password:</label>
+    <input formControlName="password" type="password" class="form-control">
+    <div *ngIf="password.invalid && (password.touched || password.dirty)">
+        <p *ngIf="password.hasError('required')">שדה חובה</p>
+        <!-- שמות בדיקות התקינות באותיות קטנות גם כמה מילים -->
+        <p *ngIf="password.hasError('minlength')">קצר</p>
+        <!-- בבדיקת תקינות אישית יש לכתוב את שם הערך שהפונקציה מחזירה -->
+        <p *ngIf="password.hasError('errorName')">קיים</p>
+    </div>
+
+    <label class="form-label">input firstName:</label>
+    <input type="text" formControlName="firstName" class="form-control">
+    <div *ngIf="firstName.invalid && (firstName.touched||firstName.dirty)">
+        <p *ngIf="firstName.hasError('required')">שדה חובה</p>
+        <p *ngIf="firstName.hasError('errorEmail')">אין משתמש עם מייל זה</p>
+    </div>
+
+    <label class="form-label">input lastName:</label>
+    <input formControlName="lastName" class="form-control">
+    <div *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+        <p *ngIf="lastName.hasError('required')">שדה חובה</p>
+        <!-- שמות בדיקות התקינות באותיות קטנות גם כמה מילים -->
+        <p *ngIf="lastName.hasError('minlength')">קצר</p>
+        <!-- בבדיקת תקינות אישית יש לכתוב את שם הערך שהפונקציה מחזירה -->
+        <p *ngIf="lastName.hasError('errorName')">קיים</p>
+    </div>
+
+    <label class="form-label">input phone:</label>
+    <input type="text" formControlName="phone" class="form-control">
+    <div *ngIf="phone.invalid && (phone.touched||phone.dirty)">
+        <p *ngIf="phone.hasError('required')">שדה חובה</p>
+        <p *ngIf="phone.hasError('errorEmail')">אין משתמש עם מייל זה</p>
+    </div>
+
+    <label class="form-label">input firstHelp:</label><br>
+    <input formControlName="firstHelp" type="checkbox">
+    <div *ngIf="password.invalid && (firstHelp.touched || firstHelp.dirty)">
+        <p *ngIf="firstHelp.hasError('required')">שדה חובה</p>
+        <!-- שמות בדיקות התקינות באותיות קטנות גם כמה מילים -->
+        <p *ngIf="firstHelp.hasError('minlength')">קצר</p>
+        <!-- בבדיקת תקינות אישית יש לכתוב את שם הערך שהפונקציה מחזירה -->
+        <p *ngIf="firstHelp.hasError('errorName')">קיים</p>
+    </div>
+
+
+    <br>
+    <input type="submit" [disabled]="f.invalid">
+</form>
+
+<!--  -->
+<div class="second">
+
+</div>

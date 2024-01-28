@@ -1,0 +1,16 @@
+<div>
+    <div class="all">
+        <button class="per"><a routerLink="home">Home</a></button>
+        <button class="per"><a routerLink="login">Login</a></button>
+        <button class="per" *ngIf="name!=manager"><a *ngIf="name!=manager" routerLink="register">Register</a></button>
+        <button class="per" *ngIf="name!=manager"><a *ngIf="name!=manager" routerLink="ourTrips">OurTrips</a></button>
+        <button class="per" *ngIf="name!=null&&name!=manager"><a routerLink="personal"
+                *ngIf="name!=null&&name!=manager">Personal area</a></button>
+        <button class="per" *ngIf="name!=null&&name!=manager"><a *ngIf="name!=null&&name!=manager">{{name}}</a></button>
+        <button class="per" *ngIf="name==manager"><a routerLink="managerUsers" *ngIf="name==manager">Our
+                users</a></button>
+        <button class="per" *ngIf="name==manager"><a routerLink="ourTripsManager" *ngIf="name==manager">Our
+                trips</a></button>
+        <button class="per" *ngIf="name==manager"><a *ngIf="name==manager">{{name}}</a></button>
+    </div>
+</div>

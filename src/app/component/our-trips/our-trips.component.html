@@ -1,0 +1,49 @@
+<select (change)="onOptionSelected($event)">
+    <option disabled selected>סוגי טיולים</option>
+    <option value={{0}}>כל הטיולים</option>
+    <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
+</select>
+
+<div *ngFor="let item of ListT">
+    <ng-container *ngIf="item.date && compareDates(item.date,d1)==1">
+        <p style="text-align: left;" class="card" (click)="move(item.code)">
+            <mat-toolbar [ngClass]="find(item)==0?'special':'none'">
+                <mat-toolbar-row>
+                    <span>Trip </span>
+                    <span class="example-spacer"></span>
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </mat-toolbar-row>
+
+                <mat-toolbar-row>
+                    <span>יעד:{{item.goal}}</span><br>
+                    <mat-divider></mat-divider>
+                </mat-toolbar-row>
+                <mat-toolbar-row>
+                    <span>תאריך:{{item.date|date}}</span><br>
+                    <mat-divider></mat-divider>
+                </mat-toolbar-row>
+                <mat-toolbar-row>
+                    <span class="example-spacer"></span>
+                    <button mat-icon-button class="example-icon favorite-icon"
+                        aria-label="Example icon-button with heart icon">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                        <mat-icon>share</mat-icon>
+                    </button>
+                </mat-toolbar-row>
+            </mat-toolbar>
+        </p>
+    </ng-container>
+</div>
+
+<!-- ============================ -->
+<!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+
+<mat-form-field class="example-form-field">
+    <mat-label>Clearable input</mat-label>
+    <input matInput type="text">
+
+</mat-form-field> -->

@@ -1,0 +1,37 @@
+
+.update{
+    width: 50%;
+}
+#update{
+    width: 50%;
+    float: right;
+    /* background-color: bisque; */
+    margin-right: 3%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+.trip{
+    width: 50%;
+    float: right;
+    background-color: aqua;
+}
+
+.divs{
+    width: 40%;
+    height: 100px;
+    border: black solid 2px;
+    margin: 3%;
+}
+.divs:hover{
+    cursor: pointer;
+}
+.card{
+    text-align:right;
+    margin: 5%;
+    /* margin-top: 5%; */
+    width: 20%;
+    float: right;
+}
+.card:hover{
+    cursor: pointer;
+}

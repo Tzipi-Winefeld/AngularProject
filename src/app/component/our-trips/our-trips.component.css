@@ -1,0 +1,20 @@
+
+.divLock{
+   display: none; 
+}
+.divOpen{
+   display: block;
+}
+.card{
+    text-align:right;
+    margin: 5%;
+    /* margin-top: 5%; */
+    width: 20%;
+    float: right;
+}
+.card:hover{
+    cursor: pointer;
+}
+.special{
+    background-color: rgb(219, 253, 255);
+}

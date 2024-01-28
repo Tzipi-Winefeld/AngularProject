@@ -1,0 +1,25 @@
+.divs{
+    width: 20%;
+    height: 100px;
+    border: black solid 2px;
+    margin: 3%;
+}
+.divs:hover{
+    cursor: pointer;
+}
+.divLock{
+   display: none; 
+}
+.divOpen{
+   display: block;
+}
+.card{
+    text-align:right;
+    margin: 5%;
+    /* margin-top: 5%; */
+    width: 20%;
+    float: right;
+}
+.card:hover{
+    cursor: pointer;
+}

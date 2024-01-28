@@ -1,0 +1,16 @@
+.all{
+    width: 30%;
+    margin-right:10%;
+    text-align: left;
+    margin-top: 3%;
+    float: right;
+}
+
+.second{
+    width: 43%;
+    background-color: aqua;
+    height: 500px;
+    float: right;
+    margin-top: 5%;
+    margin-right: 5%;
+}

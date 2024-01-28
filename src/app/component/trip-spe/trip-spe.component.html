@@ -1,0 +1,62 @@
+<!-- כרטיס טיול -->
+<p style="text-align: left;" class="card">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span>My trip</span>
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row>
+            <span>לאיפה הטיול? {{mytrip.goal}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span>כמה שעות הטיול? {{mytrip.howTime}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span>תאריך של הטיול? {{mytrip.date|date}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span>שעת יציאה? {{mytrip.wayOut}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span>סוג הטיול? {{mytrip.nameKind}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span>מספר מקומות פנויים? {{mytrip.place}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                <mat-icon>share</mat-icon>
+            </button>
+            <button *ngIf="cu.currentUser.codeUser!=null  && find(mytrip)==1"
+                (click)="order(mytrip.code)">להזמנה</button>
+            <button *ngIf="cu.currentUser.codeUser!=null  && find(mytrip)!=1"
+                (click)="delete(mytrip.code)">לביטול</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</p>
+<img src="../../../assets/{{mytrip.img}}.jpg" width="100px" class="img">
+<!-- דיב צץ -->
+<div [hidden]="!showDiv" style="width: 20%; float: right;margin-top: 5%;margin-right: 7%;">
+    <form (ngSubmit)="save()" #formP="ngForm">
+        <div class="mb-3 mt-3">
+            <label for="id" class="form-label">הכנס מספר מקומות להזמנה:</label>
+            <input type="number" class="form-control" id="id" placeholder="Enter id" name="id" [(ngModel)]="place">
+        </div><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form><br>
+    <button mat-stroked-button color="warn" (click)="close()">close</button>
+</div>

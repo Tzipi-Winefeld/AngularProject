@@ -1,0 +1,64 @@
+<!-- <div *ngFor="let i of listUsers">
+    <p style="text-align: left;" class="card">
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <span>User</span>
+                <span class="example-spacer"></span>
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span>שם פרטי:{{i.firstName}}</span><br>
+                <mat-divider></mat-divider>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span>שם משפחה:{{i.lastName}}</span><br>
+                <mat-divider></mat-divider>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span>אימייל:{{i.email}}</span><br>
+                <mat-divider></mat-divider>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span>פלאפון:{{i.phone}}</span><br>
+                <mat-divider></mat-divider>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span class="example-spacer"></span>
+                <button mat-icon-button class="example-icon favorite-icon"
+                    aria-label="Example icon-button with heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                    <mat-icon>share</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </p>
+</div> -->
+
+
+<!-- //////////// -->
+<div class="container mt-3" id="one">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>שם פרטי</th>
+                <th>שם משפחה</th>
+                <th>אימייל</th>
+                <th>פלאפון</th>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of listUsers">
+                <td>{{p.firstName}}</td>
+                <td>{{p.lastName}}</td>
+                <td>{{p.email}}</td>
+                <td>{{p.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
