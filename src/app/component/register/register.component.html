@@ -54,15 +54,15 @@
     </div>
 
     <label class="form-label">input firstHelp:</label><br>
-    <input formControlName="firstHelp" type="checkbox">
-    <div *ngIf="password.invalid && (firstHelp.touched || firstHelp.dirty)">
+    <!-- <div *ngIf="password.invalid && (firstHelp.touched || firstHelp.dirty)">
         <p *ngIf="firstHelp.hasError('required')">שדה חובה</p>
-        <!-- שמות בדיקות התקינות באותיות קטנות גם כמה מילים -->
         <p *ngIf="firstHelp.hasError('minlength')">קצר</p>
-        <!-- בבדיקת תקינות אישית יש לכתוב את שם הערך שהפונקציה מחזירה -->
         <p *ngIf="firstHelp.hasError('errorName')">קיים</p>
-    </div>
-
+    </div> -->
+    <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
+    </section>
+  
 
     <br>
     <input type="submit" [disabled]="f.invalid">
@@ -70,5 +70,5 @@
 
 <!--  -->
 <div class="second">
-
+    <img src="../../../assets/gif/gif1.gif">
 </div>

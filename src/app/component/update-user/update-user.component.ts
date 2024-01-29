@@ -67,23 +67,27 @@ export class UpdateUserComponent {
         this.listOrders = Data;//סינון של ההזמנה הרצויה
         this.order = this.listOrders.find(x => x.codeUser == Number(this.pUser.currentUser.codeUser) && x.codeTrip == code)
         //מחיקה של ההזמנה
-        this.or.del((Number(this.order?.code))).subscribe(
-          Data => {
-            this.bool2 = Data;
-            if (this.bool2 == true) {
-              this.pUser.GetAllTripUser(Number(this.pUser.currentUser.codeUser)).subscribe(
-                Data => { this.listTrip = Data; this.ListTReplace = Data },
-                Err => alert(Err)
-              )
-              alert("ההסרה בוצעה בהצלחה")
-            }
-            else {
-              alert("הביטול לא התבצע בהצלחה")
-            }
-          },
-          Err => console.log(Err)
-        )
-
+        if(this.compareDates(this.order?.dateTrip!)>new Date()){
+          this.or.del((Number(this.order?.code))).subscribe(
+            Data => {
+              this.bool2 = Data;
+              if (this.bool2 == true) {
+                this.pUser.GetAllTripUser(Number(this.pUser.currentUser.codeUser)).subscribe(
+                  Data => { this.listTrip = Data; this.ListTReplace = Data },
+                  Err => alert(Err)
+                )
+                alert("ההסרה בוצעה בהצלחה")
+              }
+              else {
+                alert("הביטול לא התבצע בהצלחה")
+              }
+            },
+            Err => console.log(Err)
+          )
+        }
+        else{
+          alert("הטיול כבר התבצע")
+        }
       },
       Err => alert(Err)
     )
@@ -116,7 +120,13 @@ export class UpdateUserComponent {
   onOptionSelected(event: Event) {
     const selectedOption = (event.target as HTMLSelectElement).value;
     let numericValue = Number(selectedOption);
-    this.listTrip = this.ListTReplace.filter(x => x.codeKind == numericValue)
+    //this.listTrip = this.ListTReplace.filter(x => x.codeKind == numericValue)
+    if (numericValue == 0) {
+      this.listTrip = this.ListTReplace
+    }
+    else {
+      this.listTrip = this.ListTReplace.filter(x => x.codeKind == numericValue)
+    }
   }
   past() {
     this.listTrip = this.ListTReplace.filter(x => this.compareDates(x.date!) < this.d1)
@@ -133,7 +143,33 @@ export class UpdateUserComponent {
     const date3 = new Date(date1);
     return date3
   }
-
+  formatLabel(value: number): string {
+    debugger
+    if (value >= 1000) {
+      this.price=value
+      // this.filterPrice()
+      return Math.round(value / 1000) + '$';
+    }
+    else{
+      this.price=value
+      // this.filterPrice()
+      // this.p()
+      return `${value}`;
+    }
+    
+  }
+  p(value: number){
+    this.listTrip = this.ListTReplace.filter(x => x.price!<=value)
+  }
+// //////////////////////////////////
+disabled = false;
+  max = 10000;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+  value = 0;
+//////////////////////////////////////
 
   ListTReplace: Array<Trips> = new Array<Trips>()
   listTrip: Array<Trips> = new Array<Trips>()

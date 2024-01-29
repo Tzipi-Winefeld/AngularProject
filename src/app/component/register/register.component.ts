@@ -10,6 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+checked: boolean=false;
 
   constructor(public s: UsersService, public r: Router) { }
 
@@ -27,12 +28,12 @@ export class RegisterComponent implements OnInit {
     )
     //משתמשים: קוד משתמש, שם, משפחה, טלפון, מייל, סיסמת כניסה, תעודת עזרה ראשונה? (שדה בוליאני)
     this.f = new FormGroup({
-      'email': new FormControl(null, [Validators.required, this.checkEmail.bind(this)]),
+      'email': new FormControl(null, [Validators.required,Validators.email, this.checkEmail.bind(this)]),
       'password': new FormControl(null, [Validators.required, this.checkPassword.bind(this)]),
       'id': new FormControl(null, [Validators.required, Validators.maxLength(9), Validators.minLength(9)]),
       'lastName': new FormControl(null, [Validators.required, Validators.maxLength(20)]),
       'firstName': new FormControl(null, [Validators.required, Validators.maxLength(10)]),
-      'firstHelp': new FormControl(null, [Validators.required]),
+      // 'firstHelp': new FormControl(null, [Validators.required]),
       'phone': new FormControl(null, [Validators.required, Validators.minLength(9), Validators.maxLength(10), this.checkPhone.bind(this)]),
     });
   }
@@ -41,21 +42,24 @@ export class RegisterComponent implements OnInit {
   newUser: Users = new Users()
   send() {
     debugger
-    this.newUser = new Users(this.f.value.id, this.f.value.firstName, 0, this.f.value.lastName, this.f.value.email, this.f.value.phone, this.f.value.password, true)
+    this.newUser = new Users(this.f.value.id, this.f.value.firstName, 0, this.f.value.lastName, this.f.value.email, this.f.value.phone, this.f.value.password, this.checked)
 
     this.s.add(this.newUser).subscribe(
       Data => {
-        this.codeUser = Data; if (this.codeUser != -1 && this.codeUser != 0) {
+        this.codeUser = Data;
+        if (this.codeUser != -1 && this.codeUser != 0) {
           this.s.getAll().subscribe(
-            succ => { this.listUsers = succ; },
+            succ => {
+              this.listUsers = succ;
+              for (let index = 0; index < this.listUsers.length; index++) {
+                if (this.listUsers[index].codeUser == this.codeUser) {
+                  this.s.currentUser = this.listUsers[index];
+                  this.r.navigate([`ourTrips`])
+                }
+              }
+            },
             er => alert(er)
           )
-          for (let index = 0; index < this.listUsers.length; index++) {
-            if (this.listUsers[index].codeUser == this.codeUser) {
-              this.s.currentUser = this.listUsers[index];
-              this.r.navigate([`ourTrips`])
-            }
-          }
         }
         else {
           alert("הרישום לא עבר בהצלחה")
@@ -80,9 +84,9 @@ export class RegisterComponent implements OnInit {
   get phone() {
     return this.f.controls['phone']
   }
-  get firstHelp() {
-    return this.f.controls['firstHelp']
-  }
+  // get firstHelp() {
+  //   return this.f.controls['firstHelp']
+  // }
   get id() {
     return this.f.controls['id']
   }

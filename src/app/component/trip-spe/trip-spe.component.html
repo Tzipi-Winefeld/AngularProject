@@ -30,6 +30,10 @@
             <mat-divider></mat-divider>
         </mat-toolbar-row>
         <mat-toolbar-row>
+            <span>מחיר:{{mytrip.price}}</span><br>
+            <mat-divider></mat-divider>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
             <span>מספר מקומות פנויים? {{mytrip.place}}</span><br>
             <mat-divider></mat-divider>
         </mat-toolbar-row>
@@ -48,7 +52,7 @@
         </mat-toolbar-row>
     </mat-toolbar>
 </p>
-<img src="../../../assets/{{mytrip.img}}.jpg" width="100px" class="img">
+<img src="../../../assets/{{mytrip.img}}.png" width="100px" class="img">
 <!-- דיב צץ -->
 <div [hidden]="!showDiv" style="width: 20%; float: right;margin-top: 5%;margin-right: 7%;">
     <form (ngSubmit)="save()" #formP="ngForm">

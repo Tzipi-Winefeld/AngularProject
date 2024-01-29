@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.f = new FormGroup({
-      'email': new FormControl(null, [Validators.required, this.checkEmail.bind(this)]),
+      'email': new FormControl(null, [Validators.required,Validators.email, this.checkEmail.bind(this)]),
       'password': new FormControl(null, [Validators.required, this.checkPassword.bind(this)]),
     });
 
@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
     //פונקציה מהשרת שבודקת האם משתמש או מנהל
     if (this.f.value.email == mm.email && this.f.value.password == mm.password) {
       this.s.currentUser.firstName = "manager"
-      this.r.navigate([`ourTripsManager`])
+      this.r.navigate([`ourTrips`])
+      return;
     }
     for (let index = 0; index < this.listUsers.length; index++) {
       if (this.listUsers[index].email == this.f.value.email && this.listUsers[index].password == this.f.value.password) {
@@ -46,7 +47,9 @@ export class LoginComponent implements OnInit {
         this.s.currentUser = this.listUsers[index];
         localStorage.setItem("currentUser",JSON.stringify(this.listUsers[index]))
         this.r.navigate([`ourTrips`])
+        return
       }
+      this.r.navigate([`register`])
     }
     // debugger
     // this.s.GetUser(this.f.value.email,this.f.value.password).subscribe(
@@ -72,7 +75,7 @@ export class LoginComponent implements OnInit {
 
   checkEmail(fc: AbstractControl) {
     debugger
-    // if(/^[a-zA-Zא-ת]+$/.test(fc.value))
+    // if(/^[a-z]+@[a-z]+\.com+$/.test(fc.value))//^[\w.-]+@[\w.-]+\.\w+$
     //    return{'errorEmail':true} 
     return null;
   }

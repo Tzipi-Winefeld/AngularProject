@@ -23,3 +23,60 @@ a{
     text-decoration: none;
     color: white;
 }
+/* ......................... */
+/* .search-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .search-input {
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+    background-color: turquoise;
+    color: black;
+    border: none;
+    cursor: pointer;
+  } */
+  /* .......................... */
+  .menu {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .menu a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+  }
+  .menu a :hover{
+    cursor: pointer;
+    background-color: aquamarine;
+  }
+  
+  .search-box {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .menu-link {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .menu-link:hover {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: rgb(186, 186, 186);
+  }
+  

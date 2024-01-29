@@ -5,7 +5,7 @@
 .card{
     text-align:right;
     margin-right: 10%;
-    margin-top: 5%;
+    margin-top: 3%;
     width: 30%;
     float: right;
     /* height: 500px; */
@@ -13,6 +13,6 @@
 .img{
     float: right;
     width: 30%;
-    margin-top: 5%;
-    height: 510px;
+    margin-top: 3%;
+    height: 577px;
 }

@@ -1,10 +1,19 @@
-<select (change)="onOptionSelected($event)">
+<!-- <select (change)="onOptionSelected($event)">
     <option disabled selected>סוגי טיולים</option>
     <option value={{0}}>כל הטיולים</option>
     <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
-</select>
+</select> -->
 
-<div *ngFor="let item of ListT">
+<!-- <mat-form-field (change)="onOptionSelected($event)">
+    <mat-label>Choose an option</mat-label>
+    <mat-select [disabled]="disableSelect.value" (click)="onOptionSelected($event)">
+        <mat-option value="option2" disabled>סוגי טיולים (disabled)</mat-option>
+        <mat-option value={{0}}>כל הסוגים</mat-option>
+        <mat-option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</mat-option>
+    </mat-select>
+</mat-form-field> -->
+
+<!-- <div *ngFor="let item of ListT">
     <ng-container *ngIf="item.date && compareDates(item.date,d1)==1">
         <p style="text-align: left;" class="card" (click)="move(item.code)">
             <mat-toolbar [ngClass]="find(item)==0?'special':'none'">
@@ -34,10 +43,87 @@
                         <mat-icon>share</mat-icon>
                     </button>
                 </mat-toolbar-row>
+                <mat-card-footer>
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </mat-card-footer>
             </mat-toolbar>
         </p>
     </ng-container>
-</div>
+</div> -->
+
+
+<mat-drawer-container class="example-container">
+    <!-- [hasBackdrop]="hasBackdrop.value" -->
+    <mat-drawer #drawer>
+        <select (change)="onOptionSelected($event)">
+            <option disabled selected>סוגי טיולים</option>
+            <option value={{0}}>כל הטיולים</option>
+            <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
+        </select>
+    </mat-drawer>
+
+    <!-- [mode]="mode.value" -->
+    <mat-drawer-content>
+        <!-- <mat-form-field>
+        <mat-label>Sidenav mode</mat-label>
+        <mat-select #mode value="side">
+          <mat-option value="side">Side</mat-option>
+          <mat-option value="over">Over</mat-option>
+          <mat-option value="push">Push</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Has backdrop</mat-label>
+        <mat-select #hasBackdrop>
+          <mat-option>Unset</mat-option>
+          <mat-option [value]="true">True</mat-option>
+          <mat-option [value]="false">False</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+        <div *ngFor="let item of ListT">
+            <ng-container *ngIf="item.date && compareDates(item.date,d1)==1">
+                <p style="text-align: left;" class="card" (click)="move(item.code)">
+                    <mat-toolbar [ngClass]="find(item)==0?'special':'none'">
+                        <mat-toolbar-row>
+                            <span>Trip </span>
+                            <span class="example-spacer"></span>
+                            <button mat-icon-button class="example-icon"
+                                aria-label="Example icon-button with menu icon">
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                        </mat-toolbar-row>
+
+                        <mat-toolbar-row>
+                            <span>יעד:{{item.goal}}</span><br>
+                            <mat-divider></mat-divider>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row>
+                            <span>תאריך:{{item.date|date}}</span><br>
+                            <mat-divider></mat-divider>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row>
+                            <span class="example-spacer"></span>
+                            <button mat-icon-button class="example-icon favorite-icon"
+                                aria-label="Example icon-button with heart icon">
+                                <mat-icon>favorite</mat-icon>
+                            </button>
+                            <button mat-icon-button class="example-icon"
+                                aria-label="Example icon-button with share icon">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                        </mat-toolbar-row>
+                        <mat-card-footer>
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                        </mat-card-footer>
+                    </mat-toolbar>
+                </p>
+            </ng-container>
+        </div>
+        <button mat-raised-button (click)="drawer.toggle()" style="margin-left: 0%;margin-top: 4%;">Filter</button>
+    </mat-drawer-content>
+</mat-drawer-container>
+
 
 <!-- ============================ -->
 <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>

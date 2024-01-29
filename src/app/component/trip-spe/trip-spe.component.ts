@@ -101,4 +101,7 @@ export class TripSpeComponent {
   listOrders: Array<Order> = new Array<Order>()
   myOrder: Order | undefined = new Order()
   bool2: boolean = false
+
+  // 
+
 }

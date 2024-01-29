@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +28,31 @@ import { UpdateUserComponent } from './component/update-user/update-user.compone
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatSliderModule} from '@angular/material/slider';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { TtComponent } from './tt/tt.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import {ViewChild} from '@angular/core';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatInputModule} from '@angular/material/input';
+// import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MatIconModule} from '@angular/material/icon';
+// import {MatButtonModule} from '@angular/material/button';
+// import {provideNativeDateAdapter} from '@angular/material/core';
+
 
 
 
@@ -46,7 +71,8 @@ import {MatListModule} from '@angular/material/list';
     AddKindTripComponent,
     ManagerUsersComponent,
     TripsManagerComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    TtComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +87,25 @@ import {MatListModule} from '@angular/material/list';
     MatToolbarModule,
     MatDividerModule,
     MatListModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSidenavModule,
+    // MatDatepickerModule,
+    // ViewChild,
+    // MatAccordion,
+
+
+    // MatDialog,
+    // MatDialogRef,
+    // MatDialogActions,
+    // MatDialogClose,
+    // MatDialogTitle,
+    // MatDialogContent,
+    // MatAccordion,
+     MatExpansionModule,
     //http הוספת ספריה המאפשרת שימוש בפרוטוקול 
     HttpClientModule,
     BrowserAnimationsModule

@@ -7,7 +7,7 @@
     <input type="text" formControlName="email" class="form-control">
     <div *ngIf="email.invalid && (email.touched||email.dirty)">
         <p *ngIf="email.hasError('required')">שדה חובה</p>
-        <p *ngIf="email.hasError('errorEmail')">כתובת מייל לא תקינה</p>
+        <p *ngIf="email.hasError('email')">כתובת מייל לא תקינה</p>
     </div>
     
     <label class="form-label">input password:</label>
@@ -24,5 +24,8 @@
     <input type="submit" [disabled]="f.invalid">
 </form>
 <div class="second">
-    
+    <img src="../../../assets/gif/gif1.gif">
 </div>
+
+
+  

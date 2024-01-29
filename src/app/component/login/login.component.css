@@ -3,7 +3,7 @@
     width: 30%;
     margin-right:10%;
     text-align: left;
-    margin-top: 3%;
+    margin-top: 5%;
     float: right;
 }
 .second{
@@ -14,3 +14,33 @@
     margin-top: 5%;
     margin-right: 5%;
 }
+
+/* ........................ */
+.all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(222, 223, 223);
+    padding: 20px;
+  }
+  
+  .form-label {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  submit-button {
+    background-color: black;
+    color: turquoise;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  

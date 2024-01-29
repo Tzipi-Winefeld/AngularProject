@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { KindTrip } from 'src/app/classes/KindTrip';
 import { Trips } from 'src/app/classes/Trips';
@@ -87,4 +88,5 @@ export class OurTripsComponent {
   move(code: number | undefined) {
     this.r.navigate([`speTrip/${code}`])
   }
+  disableSelect = new FormControl(false);
 }

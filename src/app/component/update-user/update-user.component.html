@@ -1,92 +1,129 @@
-<div class="update">
-    <div class="container mt-3" id="update">
-        <form (ngSubmit)="save()">
-            <div class="mb-3 mt-3">
-                <label for="id" class="form-label">id:</label>
-                <input type="text" class="form-control" id="id" placeholder="Enter id" name="id"
-                    [(ngModel)]="newUser.id">
-            </div>
-            <div class="mb-3">
-                <label for="nameP" class="form-label">email:</label>
-                <input type="text" class="form-control" id="nameP" placeholder="Enter nameP" name="email"
-                    [(ngModel)]="newUser.email">
-            </div>
-            <div class="mb-3">
-                <label for="cost" class="form-label">firstname:</label>
-                <input type="text" class="form-control" id="cost" placeholder="Enter cost" name="firstname"
-                    [(ngModel)]="newUser.firstName">
-            </div>
-            <div class="mb-3 mt-3">
-                <label for="id" class="form-label">lastname:</label>
-                <input type="text" class="form-control" id="id" placeholder="Enter id" name="lastname"
-                    [(ngModel)]="newUser.lastName">
-            </div>
-            <div class="mb-3">
-                <label for="nameP" class="form-label">phone:</label>
-                <input type="text" class="form-control" id="nameP" placeholder="Enter nameP" name="phone"
-                    [(ngModel)]="newUser.phone">
-            </div>
 
-            <div class="mb-3">
-                <label for="cost" class="form-label">password:</label>
-                <input type="text" class="form-control" id="cost" placeholder="Enter cost" name="password"
-                    [(ngModel)]="newUser.password">
-            </div>
-
-            <div class="mb-3">
-                <label for="cost" class="form-label">firsthelp:</label>
-                <input type="checkbox" class="form-control" id="cost" placeholder="Enter cost" name="firsthelp"
-                    [(ngModel)]="newUser.helpFirst">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form><br>
-        <button (click)="mydelete()" class="btn btn-primary">להסרה מהאתר</button>
-    </div>
-</div>
 <!-- ////////////////////////////////////////////// -->
-<div *ngFor="let item of listTrip">
-    <ng-container>
-        <p style="text-align: left;" class="card" (click)="move(item.code)">
-            <mat-toolbar style="background-color: rgb(219, 253, 255);">
-                <mat-toolbar-row>
-                    <span>Trip </span>
-                    <span class="example-spacer"></span>
-                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                        <mat-icon>menu</mat-icon>
-                    </button>
-                </mat-toolbar-row>
-
-                <mat-toolbar-row>
-                    <span>יעד:{{item.goal}}</span><br>
-                    <mat-divider></mat-divider>
-                </mat-toolbar-row>
-                <mat-toolbar-row>
-                    <span>תאריך:{{item.date|date}}</span><br>
-                    <mat-divider></mat-divider>
-                </mat-toolbar-row>
-                <mat-toolbar-row>
-                    <span class="example-spacer"></span>
-                    <button mat-icon-button class="example-icon favorite-icon"
-                        aria-label="Example icon-button with heart icon">
-                        <mat-icon>favorite</mat-icon>
-                    </button>
-                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                        <mat-icon>share</mat-icon>
-                    </button>
-                    <button (click)="delete(item.code)" *ngIf="item.date!>d1">לביטול</button>
-                </mat-toolbar-row>
-            </mat-toolbar>
-        </p>
-    </ng-container>
-</div>
 <!-- /////////////////////////////////////////////// -->
-<div>
-    <button (click)="past()">טיולים שהיו</button>
-    <button (click)="future()">טיולים שיהיו</button>
-    <input value="{{price}}" type="number" [(ngModel)]="price" (change)="filterPrice()">
-    <select (change)="onOptionSelected($event)">
-        <option disabled selected>סוגי טיולים</option>
-        <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
-    </select>
-</div>
+<mat-drawer-container class="example-container">
+
+    <mat-drawer #drawer>
+        <div>
+            
+            <mat-card class="example-result-card">
+                <mat-card-header>
+                    <button mat-raised-button (click)="past()">טיולים שהיו</button><br><br>
+                    <button mat-raised-button (click)="future()">טיולים שיהיו</button><br>
+                    <select (change)="onOptionSelected($event)">
+                        <option disabled selected>סוגי טיולים</option>
+                        <option value={{0}}>כל הטיולים</option>
+                        <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
+                    </select><br>
+                </mat-card-header>
+                <mat-card-content>
+                    <h2>מחיר</h2>
+
+                    <div class="example-label-container">
+                        <label class="example-value-label">{{slider.value}}</label>
+                    </div>
+                    <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+                        [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                        <input matSliderThumb [(ngModel)]="value" #slider (change)="p(value)">
+                    </mat-slider>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </mat-drawer>
+
+
+    <mat-drawer-content>
+
+
+        <div class="update">
+            <div class="container mt-3" id="update">
+                <form (ngSubmit)="save()">
+                    <div class="mb-3 mt-3">
+                        <label for="id" class="form-label">id:</label>
+                        <input type="text" class="form-control" id="id" placeholder="Enter id" name="id"
+                            [(ngModel)]="newUser.id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nameP" class="form-label">email:</label>
+                        <input type="text" class="form-control" id="nameP" placeholder="Enter nameP" name="email"
+                            [(ngModel)]="newUser.email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">firstname:</label>
+                        <input type="text" class="form-control" id="cost" placeholder="Enter cost" name="firstname"
+                            [(ngModel)]="newUser.firstName">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="id" class="form-label">lastname:</label>
+                        <input type="text" class="form-control" id="id" placeholder="Enter id" name="lastname"
+                            [(ngModel)]="newUser.lastName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nameP" class="form-label">phone:</label>
+                        <input type="text" class="form-control" id="nameP" placeholder="Enter nameP" name="phone"
+                            [(ngModel)]="newUser.phone">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">password:</label>
+                        <input type="text" class="form-control" id="cost" placeholder="Enter cost" name="password"
+                            [(ngModel)]="newUser.password">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">firsthelp:</label>
+                        <input type="checkbox" class="form-control" id="cost" placeholder="Enter cost" name="firsthelp"
+                            [(ngModel)]="newUser.helpFirst">
+                    </div>
+
+                    <button type="submit">Submit</button>
+                    <!-- class="btn btn-primary" -->
+                </form><br>
+                <button (click)="mydelete()">להסרה מהאתר</button>
+            </div>
+        </div>
+        <!--  -->
+        <div *ngFor="let item of listTrip">
+            <ng-container>
+                <p style="text-align: left;" class="card" (click)="move(item.code)">
+                    <mat-toolbar style="background-color: rgb(219, 253, 255);">
+                        <mat-toolbar-row>
+                            <span>Trip </span>
+                            <span class="example-spacer"></span>
+                            <button mat-icon-button class="example-icon"
+                                aria-label="Example icon-button with menu icon">
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                        </mat-toolbar-row>
+
+                        <mat-toolbar-row>
+                            <span>יעד:{{item.goal}}</span><br>
+                            <mat-divider></mat-divider>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row>
+                            <span>תאריך:{{item.date|date}}</span><br>
+                            <mat-divider></mat-divider>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row>
+                            <span class="example-spacer"></span>
+                            <button mat-icon-button class="example-icon favorite-icon"
+                                aria-label="Example icon-button with heart icon">
+                                <mat-icon>favorite</mat-icon>
+                            </button>
+                            <button mat-icon-button class="example-icon"
+                                aria-label="Example icon-button with share icon">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                            <button (click)="delete(item.code)" *ngIf="item.date!>d1">לביטול</button>
+                        </mat-toolbar-row>
+                        <mat-card-footer>
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                        </mat-card-footer>
+                    </mat-toolbar>
+                </p>
+            </ng-container>
+        </div>
+        <button mat-raised-button (click)="drawer.toggle()" style="margin-left: 0%;margin-top: 2%;">Filter</button>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -12,17 +12,20 @@ export class NavComponent {
 
   constructor(public r: Router, public s: UsersService) {
   }
-  user:Users=new Users()
+  user: Users = new Users()
   get name() {
     if (this.s.currentUser.firstName != "")
-    // const u= localStorage.getItem('currentUser')
-    // const b=JSON.parse(u!);
-    // return b.firstName
+      // const u= localStorage.getItem('currentUser')
+      // const b=JSON.parse(u!);
+      // return b.firstName
       return this.s.currentUser.firstName;
     else
       return null;
   }
   get manager() {
     return "manager";
+  }
+  connect() {
+    this.r.navigate(['login'])
   }
 }
