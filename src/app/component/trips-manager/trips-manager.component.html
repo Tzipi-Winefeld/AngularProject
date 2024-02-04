@@ -1,23 +1,16 @@
-<p>our-trips works!</p>
 <select (change)="onOptionSelected($event)" class="btn btn-primary">
-    <option disabled selected >סוגי טיולים</option>
-<option *ngFor="let i of list" value={{i.kindTripId}} >{{i.kindTripName}}</option>
+    <option disabled selected>סוגי טיולים</option>
+    <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
 </select>
 
 <button (click)="addTrip()" class="btn btn-primary">להוספת טיול</button>
 <router-outlet></router-outlet>
 <button mat-stroked-button color="warn" (click)="close()" [hidden]="!showDiv">close</button>
-<!-- <div *ngFor="let i of ListT"  class="divs" style="border-color: chartreuse;" (click)="move(i.code)">{{i.goal}}  {{i.date}}
-    <button (click)="order(i.code)">להזמנה</button>
-</div> -->
-
-
 
 <div *ngFor="let item of ListT">
-    <ng-container >
+    <ng-container>
         <p style="text-align: left;" class="card" (click)="move(item.code)">
             <mat-toolbar>
-                <!-- color="primary" -->
                 <mat-toolbar-row>
                     <span>Trip </span>
                     <span class="example-spacer"></span>
@@ -25,7 +18,7 @@
                         <mat-icon>menu</mat-icon>
                     </button>
                 </mat-toolbar-row>
-        
+
                 <mat-toolbar-row>
                     <span>יעד:{{item.goal}}</span><br>
                     <mat-divider></mat-divider>
@@ -36,7 +29,8 @@
                 </mat-toolbar-row>
                 <mat-toolbar-row>
                     <span class="example-spacer"></span>
-                    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <button mat-icon-button class="example-icon favorite-icon"
+                        aria-label="Example icon-button with heart icon">
                         <mat-icon>favorite</mat-icon>
                     </button>
                     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
@@ -47,6 +41,3 @@
         </p>
     </ng-container>
 </div>
-<!-- ============================ -->
-
-  

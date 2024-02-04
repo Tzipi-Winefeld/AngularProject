@@ -1,25 +1,29 @@
-.divs{
+.divs {
     width: 20%;
     height: 100px;
     border: black solid 2px;
     margin: 3%;
 }
-.divs:hover{
+
+.divs:hover {
     cursor: pointer;
 }
-.divLock{
-   display: none; 
+
+.divLock {
+    display: none;
 }
-.divOpen{
-   display: block;
+
+.divOpen {
+    display: block;
 }
-.card{
-    text-align:right;
+
+.card {
+    text-align: right;
     margin: 5%;
-    /* margin-top: 5%; */
     width: 20%;
     float: right;
 }
-.card:hover{
+
+.card:hover {
     cursor: pointer;
 }

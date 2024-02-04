@@ -9,43 +9,33 @@ import { Trips } from '../classes/Trips';
 })
 export class UsersService {
 
-  constructor(public h:HttpClient)
-   {
+  constructor(public h: HttpClient) {
 
-   }
-  currentUser:Users=new Users();
+  }
+  currentUser: Users = new Users();
 
-  basisUrl:string="https://localhost:7088/api/User/"
+  basisUrl: string = "https://localhost:7088/api/User/"
 
-  getAll():Observable<Array<Users>>{
+  getAll(): Observable<Array<Users>> {
     return this.h.get<Array<Users>>(`${this.basisUrl}GetAllUsers`)
   }
-  GetAllTripUser(code:number):Observable<Array<Trips>>{
+  GetAllTripUser(code: number): Observable<Array<Trips>> {
     return this.h.get<Array<Trips>>(`${this.basisUrl}GetAllTripUser/${code}`)
   }
-  GetUser(email:string,password:string):Observable<Users>{
-    debugger
-    // email="tzipi974@gmail.com"
-    // password="123"
+  GetUser(email: string, password: string): Observable<Users> {
     return this.h.get<Users>(`${this.basisUrl}GetUser/${email}/${password}`)
   }
-  del(code:number){
+  del(code: number) {
     return this.h.delete<boolean>(`${this.basisUrl}DeleteUser/${code}`)
   }
-  add(f:Users):Observable<number>
-  {
-    debugger
-    //body משתנה הנשלח ב
-    // נוסיף פסיק ושם המשתנה
-    return this.h.post<number>(`${this.basisUrl}PostUser`,f)
+  add(f: Users): Observable<number> {
+    return this.h.post<number>(`${this.basisUrl}PostUser`, f)
   }
-  update(f:Users):Observable<number>
-  {
-    return this.h.put<number>(`${this.basisUrl}PatchUser`,f)
+  update(f: Users): Observable<number> {
+    return this.h.put<number>(`${this.basisUrl}PatchUser`, f)
   }
 
-  getManager():Observable<Array<Users>>
-  {
+  getManager(): Observable<Array<Users>> {
     return this.h.get<Array<Users>>(`${this.basisUrl}GetManager`)
   }
 }

@@ -5,20 +5,21 @@
     height: 650px;
     margin-left: 0%;
     float:right;
-    /* margin-top: 4.7%; */
-    /* margin-right: 100%; */
 }
 .d2{
     width: 50%;
-    /* background-color: cadetblue; */
     height: 650px;
     float:right;
-    /* margin-top: 4.7%; */
 }
 .dall{
     width: 100%;
     background-color: blue;
-    /* height: 650px; */
-    /* position: fixed; */
     float:right;
+}
+.under{
+    width: 100%;
+    background-color: black;
+    height: 100px;
+    text-align: right;
+    color: azure;
 }

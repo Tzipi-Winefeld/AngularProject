@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { Users } from 'src/app/classes/Users';
 import { UsersService } from 'src/app/services/users.service';
@@ -11,6 +12,9 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  move() {
+    this.r.navigate([`ourTrips`])
+  }
 
   constructor(public s: UsersService, public r: Router) { }
 
@@ -20,20 +24,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.f = new FormGroup({
-      'email': new FormControl(null, [Validators.required,Validators.email, this.checkEmail.bind(this)]),
-      'password': new FormControl(null, [Validators.required, this.checkPassword.bind(this)]),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(3), this.checkPassword.bind(this)]),
     });
 
     this.s.getAll().subscribe(
       Data => { this.listUsers = Data; },
-      Err => alert(Err)
+      Err => console.log(Err)
     )
   }
 
-
   send() {
-    const m=localStorage.getItem('manager')
-    const mm=JSON.parse(m!)
+    const m = localStorage.getItem('manager')
+    const mm = JSON.parse(m!)
     //פונקציה מהשרת שבודקת האם משתמש או מנהל
     if (this.f.value.email == mm.email && this.f.value.password == mm.password) {
       this.s.currentUser.firstName = "manager"
@@ -45,24 +48,12 @@ export class LoginComponent implements OnInit {
         //אזור אישי
         //שם משתמש
         this.s.currentUser = this.listUsers[index];
-        localStorage.setItem("currentUser",JSON.stringify(this.listUsers[index]))
+        localStorage.setItem("currentUser", JSON.stringify(this.listUsers[index]))
         this.r.navigate([`ourTrips`])
         return
       }
       this.r.navigate([`register`])
     }
-    // debugger
-    // this.s.GetUser(this.f.value.email,this.f.value.password).subscribe(
-    //   Data=>{this.current=Data;},
-    //   Err=>alert(Err)
-    //   )
-    //   debugger
-    //   if(this.current!=undefined){
-    //     debugger
-    //     this.s.currentUser=this.current;
-    //     this.r.navigate([`ourTrips`])
-    //   }
-
   }
 
   get email() {
@@ -72,17 +63,11 @@ export class LoginComponent implements OnInit {
     return this.f.controls['password']
   }
 
-
-  checkEmail(fc: AbstractControl) {
-    debugger
-    // if(/^[a-z]+@[a-z]+\.com+$/.test(fc.value))//^[\w.-]+@[\w.-]+\.\w+$
-    //    return{'errorEmail':true} 
-    return null;
-  }
-
   checkPassword(fc: AbstractControl) {
     debugger
     return null
   }
+  matcher = new ErrorStateMatcher();
+  hide = true;
 
 }

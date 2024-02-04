@@ -15,44 +15,26 @@ import { TripSpeComponent } from './component/trip-spe/trip-spe.component';
 import { AddTripComponent } from './component/add-trip/add-trip.component';
 import { AddKindTripComponent } from './component/add-kind-trip/add-kind-trip.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//////
-// import { Component } from '@angular/core';
+// /////////////////////////////////////////////////////////////
 import { MatIconModule } from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ManagerUsersComponent } from './component/manager-users/manager-users.component';
 import { TripsManagerComponent } from './component/trips-manager/trips-manager.component';
 import { UpdateUserComponent } from './component/update-user/update-user.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatListModule} from '@angular/material/list';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatSliderModule } from '@angular/material/slider';
 
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatCardModule} from '@angular/material/card';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { TtComponent } from './tt/tt.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
-import {ViewChild} from '@angular/core';
-import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-// import {MatInputModule} from '@angular/material/input';
-// import {MatFormFieldModule} from '@angular/material/form-field';
-// import {MatIconModule} from '@angular/material/icon';
-// import {MatButtonModule} from '@angular/material/button';
-// import {provideNativeDateAdapter} from '@angular/material/core';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 
@@ -71,14 +53,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     AddKindTripComponent,
     ManagerUsersComponent,
     TripsManagerComponent,
-    UpdateUserComponent,
-    TtComponent
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    // Component,
     MatIconModule,
     MatButtonModule,
     FormsModule,
@@ -93,19 +73,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatProgressBarModule,
     MatSelectModule,
     MatSidenavModule,
-    // MatDatepickerModule,
-    // ViewChild,
-    // MatAccordion,
-
-
-    // MatDialog,
-    // MatDialogRef,
-    // MatDialogActions,
-    // MatDialogClose,
-    // MatDialogTitle,
-    // MatDialogContent,
-    // MatAccordion,
-     MatExpansionModule,
+    MatExpansionModule,
     //http הוספת ספריה המאפשרת שימוש בפרוטוקול 
     HttpClientModule,
     BrowserAnimationsModule

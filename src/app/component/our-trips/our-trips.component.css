@@ -8,7 +8,6 @@
 .card{
     text-align:right;
     margin: 5%;
-    /* margin-top: 5%; */
     width: 20%;
     float: right;
 }
@@ -18,3 +17,17 @@
 .special{
     background-color: rgb(219, 253, 255);
 }
+/* ///////////////// */
+.example-card {
+    max-width: 250px;
+    float: right;
+    margin: 3%;
+  }
+  
+  .example-header-image {
+    background-image: url('../../../assets/gif/15.png');
+    background-size: cover;
+  }
+  .dis{
+    background-color: rgb(192, 190, 190);
+  }

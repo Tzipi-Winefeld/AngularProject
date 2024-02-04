@@ -8,6 +8,7 @@ import { KindTripService } from 'src/app/services/kind-trip.service';
 import { OrderService } from 'src/app/services/order.service';
 import { TripsService } from 'src/app/services/trips.service';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-user',
@@ -22,12 +23,12 @@ export class UpdateUserComponent {
 
     this.pUser.GetAllTripUser(Number(this.pUser.currentUser.codeUser)).subscribe(
       Data => { this.listTrip = Data; this.ListTReplace = Data },
-      Err => alert(Err)
+      Err => console.log(Err)
     )
 
     this.kind.getAll().subscribe(
       Data => { this.list = Data; },
-      Err => alert(Err)
+      Err => console.log(Err)
     )
   }
   code: number = 0
@@ -37,59 +38,54 @@ export class UpdateUserComponent {
   save() {
     debugger
     console.log(this.newUser);
-    // this.pSer.myAllProducts.push(this.newProduct)
-    // this.pSer.myProducts=this.pSer.myAllProducts.filter(a=>a.idC==this.newProduct.idC)
     this.pUser.update(this.newUser).subscribe(
       Data => {
         this.code = Data;
         if (this.code > 0) {
-          alert("עודכן בהצלחה")
+          Swal.fire('Success!', 'עודכן בהצלחה', 'success')
         }
         else {
-          alert("העדכון לא התבצע נסה שוב")
+          Swal.fire('Error!', 'העדכון לא התבצע אנא נסה שוב', 'error');
         }
       },
       Err => console.log(Err)
     )
   }
   move(code: number | undefined) {
-    debugger
-    //alert(code)
-    //this.ListT=this.ListT.filter(x=>x.codeKind==code)
     this.r.navigate([`speTrip/${code}`])
-
   }
   delete(code: number | undefined) {
-    debugger
     //כל ההזמנות
     this.or.getAll().subscribe(
       Data => {
         this.listOrders = Data;//סינון של ההזמנה הרצויה
         this.order = this.listOrders.find(x => x.codeUser == Number(this.pUser.currentUser.codeUser) && x.codeTrip == code)
         //מחיקה של ההזמנה
-        if(this.compareDates(this.order?.dateTrip!)>new Date()){
+        if (this.compareDates(this.order?.dateTrip!) > new Date()) {
           this.or.del((Number(this.order?.code))).subscribe(
             Data => {
               this.bool2 = Data;
               if (this.bool2 == true) {
                 this.pUser.GetAllTripUser(Number(this.pUser.currentUser.codeUser)).subscribe(
                   Data => { this.listTrip = Data; this.ListTReplace = Data },
-                  Err => alert(Err)
+                  Err => console.log(Err)
                 )
-                alert("ההסרה בוצעה בהצלחה")
+                Swal.fire('Success!', 'ביטול הטיול התבצע בהצלחה', 'success')
               }
               else {
-                alert("הביטול לא התבצע בהצלחה")
+                Swal.fire('Error!', 'הביטול לא התבצע אנא נסה שוב', 'error');
+
               }
             },
             Err => console.log(Err)
           )
         }
-        else{
-          alert("הטיול כבר התבצע")
+        else {
+          Swal.fire('Error!', 'הטיול כבר התבצע', 'error');
+
         }
       },
-      Err => alert(Err)
+      Err => console.log(Err)
     )
   }
   mydelete() {
@@ -99,34 +95,43 @@ export class UpdateUserComponent {
       Data => {
         this.tripUser = Data;
         for (let i = 0; i < this.tripUser.length; i++) {
-          if (this.tripUser[i].date! > new Date())
-            alert("יש לך טיולים עתידיים שאתה רשום אליהם אנא בטל אותם קודם")
+          if (this.compareDates(this.tripUser[i].date!) > new Date()) {
+            Swal.fire('Error!', 'יש לך טיולים עתידיים שאתה רשום אליהם אנא בטל אותם קודם', 'error');
+            return
+          }
         }
-        this.pUser.del((Number(this.pUser.currentUser.codeUser))).subscribe(
+        this.or.getAll().subscribe(
           Data => {
-            this.bool = Data; if (this.bool == true) {
-              alert("ההסרה בוצעה בהצלחה")
+            this.listOrders = Data;
+            debugger
+            for (let i = 0; i < this.listOrders.length; i++) {
+              if (this.listOrders[i].codeUser == this.pUser.currentUser.codeUser) {
+                debugger
+                this.or.del((Number(this.order?.code))).subscribe(
+                  succ => {
+                    this.bool2 = succ;
+                  },
+                  Err => console.log(Err)
+                )
+              }
             }
-            else {
-              alert("יש לך טיולים עתידיים שאתה רשום אליהם אנא בטל אותם קודם")
-            }
+            this.pUser.del((Number(this.pUser.currentUser.codeUser))).subscribe(
+              Data => {
+                this.bool = Data; if (this.bool == true) {
+                  Swal.fire('Success!', 'ההזמנה נקלטה בהצלחה', 'success');
+                }
+                else {
+                  Swal.fire('Oops...', 'יש לך טיולים עתידיים שאתה רשום אליהם אנא בטל אותם קודם', 'error');
+                }
+              },
+              Err => console.log(Err)
+            )
           },
           Err => console.log(Err)
         )
       },
       Err => console.log(Err)
     )
-  }
-  onOptionSelected(event: Event) {
-    const selectedOption = (event.target as HTMLSelectElement).value;
-    let numericValue = Number(selectedOption);
-    //this.listTrip = this.ListTReplace.filter(x => x.codeKind == numericValue)
-    if (numericValue == 0) {
-      this.listTrip = this.ListTReplace
-    }
-    else {
-      this.listTrip = this.ListTReplace.filter(x => x.codeKind == numericValue)
-    }
   }
   past() {
     this.listTrip = this.ListTReplace.filter(x => this.compareDates(x.date!) < this.d1)
@@ -135,41 +140,37 @@ export class UpdateUserComponent {
   future() {
     this.listTrip = this.ListTReplace.filter(x => this.compareDates(x.date!) > this.d1)
   }
-  filterPrice(){
+  filterPrice() {
     debugger
-    this.listTrip = this.ListTReplace.filter(x => x.price!<=this.price)
+    this.listTrip = this.ListTReplace.filter(x => x.price! <= this.price)
   }
   compareDates(date1: Date): Date {
     const date3 = new Date(date1);
     return date3
   }
-  formatLabel(value: number): string {
-    debugger
-    if (value >= 1000) {
-      this.price=value
-      // this.filterPrice()
-      return Math.round(value / 1000) + '$';
-    }
-    else{
-      this.price=value
-      // this.filterPrice()
-      // this.p()
-      return `${value}`;
-    }
-    
+  p(value: number) {
+    this.listTrip = this.ListTReplace.filter(x => x.price! <= value)
   }
-  p(value: number){
-    this.listTrip = this.ListTReplace.filter(x => x.price!<=value)
+  onOptionSelected(arg0: string) {
+    if (Number(arg0) == 0) {
+      this.listTrip = this.ListTReplace
+    }
+    else {
+      this.listTrip = this.ListTReplace.filter(x => x.codeKind == Number(arg0))
+    }
   }
-// //////////////////////////////////
-disabled = false;
+  move2() {
+    Swal.fire('Thank you!', `${this.pUser.currentUser.firstName} תודה על המשוב`, 'success')
+  }
+  // //////////////////////////////////
+  disabled = false;
   max = 10000;
   min = 0;
   showTicks = false;
   step = 1;
   thumbLabel = false;
   value = 0;
-//////////////////////////////////////
+  //////////////////////////////////////
 
   ListTReplace: Array<Trips> = new Array<Trips>()
   listTrip: Array<Trips> = new Array<Trips>()
@@ -179,5 +180,6 @@ disabled = false;
   order: Order | undefined = new Order()
   newUser: Users = new Users()
   tripUser: Array<Trips> = new Array<Trips>()
-  price:number=10000
+  price: number = 10000
+  select: string = ""
 }

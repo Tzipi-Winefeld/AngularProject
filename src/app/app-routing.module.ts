@@ -13,26 +13,28 @@ import { TripsManagerComponent } from './component/trips-manager/trips-manager.c
 
 const routes: Routes = [
 
-  {path:'',component:HomeComponent},
-  {path:'login',component:LoginComponent},
-  {path:'home',component:HomeComponent},
-  {path:'ourTrips',component:OurTripsComponent},
-  {path:'personal',component:PersonalComponent},
-  {path:'addTrip',component:AddTripComponent},
-  {path:'ourTripsManager',component:TripsManagerComponent,children:[
-    {path:'addTrip',component:AddTripComponent}
-  ]},
-  {path:'managerUsers',component:ManagerUsersComponent},
-  {path:'speTrip/:code',component:TripSpeComponent},
-  {path:'addKindTrip',component:AddKindTripComponent},
-  {path:'register',component:RegisterComponent,
-  
-  children:[
-    
-    //{path:'details/:idP',component:DetailsComponent}
-  ]}
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'ourTrips', component: OurTripsComponent },
+  { path: 'personal', component: PersonalComponent },
+  { path: 'addTrip', component: AddTripComponent },
+  {
+    path: 'ourTripsManager', component: TripsManagerComponent, children: [
+      { path: 'addTrip', component: AddTripComponent }
+    ]
+  },
+  { path: 'managerUsers', component: ManagerUsersComponent },
+  { path: 'speTrip/:code', component: TripSpeComponent },
+  { path: 'addKindTrip', component: AddKindTripComponent },
+  {
+    path: 'register', component: RegisterComponent,
+    children: [
+      //{path:'details/:idP',component:DetailsComponent}
+    ]
+  }
 
-  
+
 
 ];
 

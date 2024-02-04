@@ -15,9 +15,6 @@ export class NavComponent {
   user: Users = new Users()
   get name() {
     if (this.s.currentUser.firstName != "")
-      // const u= localStorage.getItem('currentUser')
-      // const b=JSON.parse(u!);
-      // return b.firstName
       return this.s.currentUser.firstName;
     else
       return null;

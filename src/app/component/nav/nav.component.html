@@ -1,58 +1,18 @@
-<!-- <div>
-    <div class="all">
-        <button class="per"><a routerLink="home">Home</a></button>
-        <button class="per"><a routerLink="login">Login</a></button>
-        <button class="per" *ngIf="name!=manager"><a *ngIf="name!=manager" routerLink="register">Register</a></button>
-        <button class="per" *ngIf="name!=manager"><a *ngIf="name!=manager" routerLink="ourTrips">OurTrips</a></button>
-        <button class="per" *ngIf="name!=null&&name!=manager"><a routerLink="personal"
-                *ngIf="name!=null&&name!=manager">Personal area</a></button>
-        <button class="per" *ngIf="name!=null&&name!=manager"><a *ngIf="name!=null&&name!=manager">{{name}}</a></button>
-        <button class="per" *ngIf="name==manager"><a routerLink="managerUsers" *ngIf="name==manager">Our
-                users</a></button>
-        <button class="per" *ngIf="name==manager"><a routerLink="ourTripsManager" *ngIf="name==manager">Our
-                trips</a></button>
-        <button class="per" *ngIf="name==manager"><a *ngIf="name==manager">{{name}}</a></button>
-    </div>
-</div> -->
-
-
-<!-- ................................................. -->
 <div class="menu">
-    <div (click)="connect()" style="cursor: pointer;"><mat-icon >supervised_user_circle</mat-icon></div>
+    <div (click)="connect()" style="cursor: pointer;"><mat-icon>supervised_user_circle</mat-icon></div>
 
     <a routerLink="home" class="menu-link">Home </a>
-    <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon> -->
-    <!-- <a routerLink="login" class="menu-link">Login</a> -->
+    <a routerLink="login" class="menu-link">Login</a>
     <a *ngIf="name != 'manager'" routerLink="register" class="menu-link">Register</a>
     <a *ngIf="name != 'manager'" routerLink="ourTrips" class="menu-link">Our Trips</a>
     <a routerLink="personal" *ngIf="name != null && name != 'manager'" class="menu-link">Personal Area</a>
-    
+
     <a routerLink="managerUsers" *ngIf="name == 'manager'" class="menu-link">Our Users</a>
     <a routerLink="ourTrips" *ngIf="name == 'manager'" class="menu-link">Our Trips</a>
-    
+
     <a *ngIf="name != null && name != 'manager'" class="menu-link">{{name}}</a>
     <a *ngIf="name == 'manager'" class="menu-link">{{name}}</a>
     <input type="text" placeholder="Search..." class="search-box">
-    
-    
-  </div>
-  
-<!-- ............................................ -->
-<!-- <div>
-    <div class="all">
-      <div class="search-box">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-button">Search</button>
-      </div>
-      <button class="per"><a routerLink="home">Home</a></button>
-      <button class="per"><a routerLink="login">Login</a></button>
-      <button class="per" *ngIf="name != 'manager'"><a routerLink="register">Register</a></button>
-      <button class="per" *ngIf="name != 'manager'"><a routerLink="ourTrips">OurTrips</a></button>
-      <button class="per" *ngIf="name != null && name != 'manager'"><a routerLink="personal">Personal area</a></button>
-      <button class="per" *ngIf="name != null && name != 'manager'">{{name}}</button>
-      <button class="per" *ngIf="name == 'manager'"><a routerLink="managerUsers">Our users</a></button>
-      <button class="per" *ngIf="name == 'manager'"><a routerLink="ourTripsManager">Our trips</a></button>
-      <button class="per" *ngIf="name == 'manager'">{{name}}</button>
-    </div>
-  </div> -->
-  
+
+
+</div>

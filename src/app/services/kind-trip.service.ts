@@ -8,22 +8,19 @@ import { KindTrip } from '../classes/KindTrip';
 })
 export class KindTripService {
 
-  constructor(public h:HttpClient) {
+  constructor(public h: HttpClient) {
 
-   }
+  }
 
-  basisUrl:string="https://localhost:7088/api/KindTrip/"
-  
-  getAll():Observable<Array<KindTrip>>{
+  basisUrl: string = "https://localhost:7088/api/KindTrip/"
+
+  getAll(): Observable<Array<KindTrip>> {
     return this.h.get<Array<KindTrip>>(`${this.basisUrl}GetAllKindTrips`)
   }
-  del(code:number){
+  del(code: number) {
     return this.h.delete<boolean>(`${this.basisUrl}DeleteKindTrip/${code}`)
   }
-  add(k:KindTrip)
-  {
-    //body משתנה הנשלח ב
-    // נוסיף פסיק ושם המשתנה
-    return this.h.post<number>(`${this.basisUrl}AddKindTrip`,k)
+  add(k: KindTrip) {
+    return this.h.post<number>(`${this.basisUrl}AddKindTrip`, k)
   }
 }

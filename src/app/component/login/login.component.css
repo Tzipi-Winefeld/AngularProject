@@ -1,18 +1,16 @@
-
-.all{
+.all {
     width: 30%;
-    margin-right:10%;
+    margin-right: 10%;
     text-align: left;
     margin-top: 5%;
     float: right;
 }
-.second{
+
+.second {
     width: 43%;
-    background-color: aqua;
     height: 500px;
     float: right;
-    margin-top: 5%;
-    margin-right: 5%;
+    margin-right: 17%;
 }
 
 /* ........................ */
@@ -22,25 +20,23 @@
     align-items: center;
     background-color: rgb(222, 223, 223);
     padding: 20px;
-  }
-  
-  .form-label {
+}
+
+.form-label {
     color: black;
     font-weight: bold;
-  }
-  
-  .form-control {
+}
+
+.form-control {
     width: 250px;
     padding: 10px;
     margin-bottom: 10px;
-  }
-  
-  submit-button {
+}
+
+submit-button {
     background-color: black;
     color: turquoise;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-  }
-  
-  
+}

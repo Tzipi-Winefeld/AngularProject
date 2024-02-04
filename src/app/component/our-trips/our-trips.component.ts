@@ -6,6 +6,7 @@ import { Trips } from 'src/app/classes/Trips';
 import { KindTripService } from 'src/app/services/kind-trip.service';
 import { TripsService } from 'src/app/services/trips.service';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-our-trips',
@@ -13,7 +14,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./our-trips.component.css']
 })
 export class OurTripsComponent {
-  
+  x: number | undefined = 0;
 
   constructor(public trip: TripsService, public kindTrip: KindTripService, public r: Router, public user: UsersService) {
     this.d1 = new Date()
@@ -30,7 +31,7 @@ export class OurTripsComponent {
       Data => { this.ListTReplace = Data; },
       Err => console.log(Err)
     )
-    
+
     this.kindTrip.getAll().subscribe(
       Data => { this.list = Data; },
       Err => console.log(Err)
@@ -62,6 +63,20 @@ export class OurTripsComponent {
     }
     return 1;
   }
+
+  move2(y: number | undefined) {
+    Swal.fire('Thank you!', 'תודה על המשוב', 'success')
+  }
+  onOptionSelected(arg0: string) {
+    if (Number(arg0) == 0) {
+      this.ListT = this.ListTReplace
+      this.ListTrip = this.ListTripReplace
+    }
+    else {
+      this.ListT = this.ListTReplace.filter(x => x.codeKind == Number(arg0))
+      this.ListTrip = this.ListTripReplace.filter(x => x.codeKind == Number(arg0))
+    }
+  }
   //משתני מחלקה
   showDiv: boolean = false;
   d1: Date;
@@ -71,22 +86,10 @@ export class OurTripsComponent {
   ListTripReplace: Array<Trips> = new Array<Trips>()
   //רשימת סוגי הטיולים מיובאת מהמסד
   list: Array<KindTrip> = new Array<KindTrip>();
-  //סינון לפי סוג טיול
-  onOptionSelected(event: Event) {
-    const selectedOption = (event.target as HTMLSelectElement).value;
-    let numericValue = Number(selectedOption);
-    if (numericValue == 0) {
-      this.ListT = this.ListTReplace
-      this.ListTrip = this.ListTripReplace
-    }
-    else {
-      this.ListT = this.ListTReplace.filter(x => x.codeKind == numericValue)
-      this.ListTrip = this.ListTripReplace.filter(x => x.codeKind == numericValue)
-    }
-  }
   //ניתוב לטיול ספציפי
   move(code: number | undefined) {
     this.r.navigate([`speTrip/${code}`])
   }
   disableSelect = new FormControl(false);
+  select: string = ""
 }

@@ -11,5 +11,5 @@ export class HomeComponent {
     const man=JSON.stringify({email:"man@gmail.com",password:"111"})
     localStorage.setItem("manager",man);
   }
-
+  text="Jurney in world"
 }

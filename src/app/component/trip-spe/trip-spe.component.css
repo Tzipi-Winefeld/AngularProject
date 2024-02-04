@@ -1,18 +1,34 @@
-
-.hide{
-    width: 20%;
+.hide {
+    width: 18%;
+    float: left;
 }
-.card{
-    text-align:right;
+
+.card {
+    text-align: right;
     margin-right: 10%;
     margin-top: 3%;
     width: 30%;
     float: right;
-    /* height: 500px; */
 }
-.img{
+
+.img {
     float: right;
-    width: 30%;
+    width: 33%;
     margin-top: 3%;
     height: 577px;
+}
+
+.example-card {
+    float: right;
+    width: 25%;
+    height: 400px;
+    margin-bottom: 8px;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+
+.example-header-image {
+    background-image: url('../../../assets/gif/15.png');
+    /* 20 10 */
+    background-size: cover;
 }

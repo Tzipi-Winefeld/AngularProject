@@ -1,44 +1,45 @@
-
-<!-- ////////////////////////////////////////////// -->
-<!-- /////////////////////////////////////////////// -->
 <mat-drawer-container class="example-container">
-
     <mat-drawer #drawer>
         <div>
-            
             <mat-card class="example-result-card">
                 <mat-card-header>
-                    <button mat-raised-button (click)="past()">טיולים שהיו</button><br><br>
-                    <button mat-raised-button (click)="future()">טיולים שיהיו</button><br>
-                    <select (change)="onOptionSelected($event)">
-                        <option disabled selected>סוגי טיולים</option>
-                        <option value={{0}}>כל הטיולים</option>
-                        <option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</option>
-                    </select><br>
+                    <mat-divider></mat-divider>
+                    <h2>סינון לפי תאריכים</h2>
                 </mat-card-header>
+                <mat-card-header>
+                    <button mat-raised-button (click)="past()" style="width: 50%;">טיולים שהיו</button><br><br>
+                    <button mat-raised-button (click)="future()" style="width: 50%;">טיולים שיהיו</button><br>
+                </mat-card-header>
+                <mat-divider></mat-divider>
                 <mat-card-content>
-                    <h2>מחיר</h2>
+                    <h2>סינון לפי סוג טיול</h2>
+                    <mat-selection-list #shoes [multiple]="false" [(ngModel)]="select" (selectionChange)="onOptionSelected(select)">
+                        <mat-list-option value={{0}}>כל הטיולים</mat-list-option>
+                        <mat-list-option *ngFor="let i of list"
+                            value={{i.kindTripId}}>{{i.kindTripName}}</mat-list-option>
+                    </mat-selection-list>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <h2>סינון לפי מחיר</h2>
 
                     <div class="example-label-container">
                         <label class="example-value-label">{{slider.value}}</label>
                     </div>
-                    <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+                    <mat-slider style="direction: ltr;" class="example-margin" [disabled]="disabled"  [min]="min" [max]="max" [step]="step"
                         [discrete]="thumbLabel" [showTickMarks]="showTicks">
                         <input matSliderThumb [(ngModel)]="value" #slider (change)="p(value)">
                     </mat-slider>
                 </mat-card-content>
             </mat-card>
         </div>
-
     </mat-drawer>
 
-
     <mat-drawer-content>
-
-
         <div class="update">
             <div class="container mt-3" id="update">
                 <form (ngSubmit)="save()">
+                    <mat-label><strong>לעדכון נתונים אישיים</strong></mat-label>
                     <div class="mb-3 mt-3">
                         <label for="id" class="form-label">id:</label>
                         <input type="text" class="form-control" id="id" placeholder="Enter id" name="id"
@@ -76,54 +77,50 @@
                         <input type="checkbox" class="form-control" id="cost" placeholder="Enter cost" name="firsthelp"
                             [(ngModel)]="newUser.helpFirst">
                     </div>
-
-                    <button type="submit">Submit</button>
-                    <!-- class="btn btn-primary" -->
+                    <button mat-raised-button type="submit"
+                        style="width: 100%;background-color: cadetblue;">Send</button>
                 </form><br>
-                <button (click)="mydelete()">להסרה מהאתר</button>
+                <button mat-raised-button (click)="mydelete()">להסרה מהאתר</button>
             </div>
         </div>
         <!--  -->
-        <div *ngFor="let item of listTrip">
-            <ng-container>
-                <p style="text-align: left;" class="card" (click)="move(item.code)">
-                    <mat-toolbar style="background-color: rgb(219, 253, 255);">
-                        <mat-toolbar-row>
-                            <span>Trip </span>
-                            <span class="example-spacer"></span>
-                            <button mat-icon-button class="example-icon"
-                                aria-label="Example icon-button with menu icon">
-                                <mat-icon>menu</mat-icon>
-                            </button>
-                        </mat-toolbar-row>
+        <mat-drawer-container class="example-container">
+            <mat-drawer #drawer>
+                <mat-selection-list #shoes [multiple]="false" [(ngModel)]="select" (selectionChange)="onOptionSelected(select)">
+                    <mat-list-option value={{0}}>כל הטיולים</mat-list-option>
+                    <mat-list-option *ngFor="let i of list" value={{i.kindTripId}}>{{i.kindTripName}}</mat-list-option>
+                </mat-selection-list>
+            </mat-drawer>
+            <mat-drawer-content>
+                <div *ngFor="let item of listTrip">
+                    <ng-container>
+                        <mat-card class="example-card" style="text-align: left;">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
 
-                        <mat-toolbar-row>
-                            <span>יעד:{{item.goal}}</span><br>
-                            <mat-divider></mat-divider>
-                        </mat-toolbar-row>
-                        <mat-toolbar-row>
-                            <span>תאריך:{{item.date|date}}</span><br>
-                            <mat-divider></mat-divider>
-                        </mat-toolbar-row>
-                        <mat-toolbar-row>
-                            <span class="example-spacer"></span>
-                            <button mat-icon-button class="example-icon favorite-icon"
-                                aria-label="Example icon-button with heart icon">
-                                <mat-icon>favorite</mat-icon>
-                            </button>
-                            <button mat-icon-button class="example-icon"
-                                aria-label="Example icon-button with share icon">
-                                <mat-icon>share</mat-icon>
-                            </button>
-                            <button (click)="delete(item.code)" *ngIf="item.date!>d1">לביטול</button>
-                        </mat-toolbar-row>
-                        <mat-card-footer>
-                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                        </mat-card-footer>
-                    </mat-toolbar>
-                </p>
-            </ng-container>
-        </div>
-        <button mat-raised-button (click)="drawer.toggle()" style="margin-left: 0%;margin-top: 2%;">Filter</button>
+                                <mat-card-title>Jurney world</mat-card-title>
+                                <mat-card-subtitle>{{item.goal}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="../../../assets/{{item.img}}.png" width="100%" class="img"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    date:{{item.date|date}}
+                                    <br>
+                                    {{item.goal}}:goal
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button (click)="move2()">LIKE</button>
+                                <button mat-button (click)="move(item.code)">MORE</button>
+                            </mat-card-actions>
+                        </mat-card>
+
+                    </ng-container>
+                </div>
+                <button mat-raised-button (click)="drawer.toggle()"
+                    style="margin-left: 0%;margin-top: 4%;">סינון</button>
+            </mat-drawer-content>
+        </mat-drawer-container>
     </mat-drawer-content>
 </mat-drawer-container>

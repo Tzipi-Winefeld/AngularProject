@@ -1,14 +1,14 @@
-
-.card{
-    text-align:right;
+.card {
+    text-align: right;
     margin: 5%;
-    /* margin-top: 5%; */
     width: 20%;
     float: right;
 }
-#one{
+
+#one {
     margin-top: 3%;
 }
-.table{
+
+.table {
     text-align: center;
 }
